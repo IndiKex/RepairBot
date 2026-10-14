@@ -1,0 +1,26 @@
+from fastapi.testclient import TestClient
+
+from repairbot.api.experiment.api import app
+
+client = TestClient(app)
+
+
+def test_root():
+    response = client.get("/")
+
+    assert response.status_code == 200
+    assert response.json() == {"message": "Hello World!"}
+
+
+def test_health():
+    response = client.get("/health")
+
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok"}
+
+
+def test_hello():
+    response = client.get("/hello/test")
+
+    assert response.status_code == 200
+    assert response.json() == {"message": "Hello, test!"}
