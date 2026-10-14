@@ -24,3 +24,13 @@ def test_hello():
 
     assert response.status_code == 200
     assert response.json() == {"message": "Hello, test!"}
+
+
+def test_post_user():
+    response = client.post("/users", json={"name": "Marci", "age": 99})
+
+    assert response.status_code == 201
+    assert response.json() == {
+        "message": "User created",
+        "user": {"name": "Marci", "age": 99},
+    }
