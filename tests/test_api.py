@@ -34,3 +34,9 @@ def test_post_user():
         "message": "User created",
         "user": {"name": "Marci", "age": 99},
     }
+
+
+def test_post_user_invalid_age():
+    response = client.post("/users", json={"name": "Marci", "age": 150})
+
+    assert response.status_code == 422
