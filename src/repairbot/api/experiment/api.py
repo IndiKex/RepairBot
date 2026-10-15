@@ -8,7 +8,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jwt.exceptions import InvalidTokenError
 from pydantic import BaseModel, Field
 
-from repairbot.api.experiment.user_database import UserDatabase
+from src.repairbot.api.experiment.user_database import UserDatabase
 
 app = FastAPI()
 
@@ -36,6 +36,10 @@ def root():
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+@app.get("/hello/Hanna")
+def hello():
+    return {"message": f"Hello, Hanna!"}
 
 
 def create_access_token(username: str) -> str:
@@ -99,7 +103,11 @@ def create_query(request: QueryRequest, username: str = Depends(get_current_user
 
     query_id = str(uuid4())
 
-    answer = f"Answer to {request.question}"
+    answer = ""
+    if (request.question == "szeretc?"):
+        answer = "Igen drágám, nagyon szeretlek!!! :)))"
+    else:
+        answer = f"Answer to {request.question}"
 
     query_db[query_id] = {
         "owner": username,
