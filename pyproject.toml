@@ -10,6 +10,10 @@ requires-python = ">=3.13"
 dependencies = [
     "fastapi[standard]>=0.143.1",
     "httpx2>=2.13.1",
+    "jwt>=1.4.0",
+    "pyjwt>=2.15.1",
+    "python-dotenv>=1.2.4",
+    "uuid>=1.30",
     "uvicorn>=0.54.0",
 ]
 
