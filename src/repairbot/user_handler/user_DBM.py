@@ -2,8 +2,8 @@ import json
 
 
 class UserDBM:
-    def __init__(self):
-        self.data_path = "data/user_data/user_database.txt"
+    def __init__(self, data_path: str):
+        self.data_path = data_path
 
     def find_user_id(self, username: str) -> int:
         with open(self.data_path, "r") as f:
@@ -49,14 +49,14 @@ class UserDBM:
         target_idx = self.find_user_id(username)
         target_user = self.find_user(username)
 
-        if target_idx < 0 or target_user["password"] != password:
+        if target_idx < 0 or not target_user or target_user["password"] != password:
             return False
 
         lines: list[str]
         with open(self.data_path, "r") as f:
             lines = f.readlines()
             lines[target_idx] = ""
-        
+
         with open(self.data_path, "w") as f:
             f.writelines(lines)
 

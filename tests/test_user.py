@@ -1,6 +1,12 @@
+import os
+
 from repairbot.user_handler.user_handler import UserHandler
 
-uh = UserHandler()
+data_path = "tests/test_user_data.txt"
+with open(data_path, "w") as f:
+    f.write("")
+
+uh = UserHandler(data_path)
 
 
 def test_add_true():
@@ -35,5 +41,13 @@ def test_authenticate_false():
 def test_authenticate_no_user():
     assert uh.authenticate_user("ALMA", "barack") == False
 
+
 def test_remove_end():
     assert uh.remove_user("TEST", "test") == True
+
+
+def test_remove_file():
+    if os.path.exists(data_path):
+        os.remove(data_path)
+    else:
+        assert False
