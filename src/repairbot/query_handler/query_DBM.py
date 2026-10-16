@@ -21,7 +21,7 @@ class QueryDBM:
                 line = f.readline()
         
         return None
-    
+
     def get_query(self, query_id: str) -> dict[str, dict[str, str]] | None:
         query = self.find_query(query_id)
         return query
