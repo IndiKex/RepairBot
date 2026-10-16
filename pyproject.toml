@@ -9,7 +9,11 @@ authors = [
 requires-python = ">=3.13"
 dependencies = [
     "fastapi[standard]>=0.143.1",
+    "google-genai>=2.31.0",
     "httpx2>=2.13.1",
+    "pyjwt>=2.15.1",
+    "python-dotenv>=1.2.4",
+    "uuid>=1.30",
     "uvicorn>=0.54.0",
 ]
 
@@ -23,10 +27,16 @@ build-backend = "uv_build"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
+[[tool.mypy.overrides]]
+module = "jwt.*"
+ignore_missing_imports = true
+
 [dependency-groups]
 dev = [
     "httpx>=0.28.1",
+    "jwt>=1.4.0",
     "mypy>=2.4.0",
+    "pyjwt>=2.15.1",
     "pytest>=9.1.1",
     "ruff>=0.17.0",
 ]

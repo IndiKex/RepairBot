@@ -1,0 +1,3 @@
+{"username":"IndiKex", "password":"titkos123"}
+{"username":"BombaBela", "password":"szeretlekMarci123"}
+{"username":"Danpro", "password":"1234"}
